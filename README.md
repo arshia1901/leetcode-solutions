@@ -53,12 +53,4 @@ Space Complexity:
 
 ---
 
-## 📅 Progress Log
-
-| Date | Milestone |
-|------|-----------|
-| Aug 2026 | Repository created 🚀 |
-
----
-
 ⭐ This repository is continuously updated as I progress through LeetCode.

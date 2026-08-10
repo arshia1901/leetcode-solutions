@@ -1,20 +1,19 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        vector<int> last(256, -1);
-
-        int left = 0;
-        int ans = 0;
-
-        for (int right = 0; right < s.size(); right++) {
-            if (last[s[right]] >= left) {
-                left = last[s[right]] + 1;
+        //variable sliding window
+        //to check for duplicates use set 
+        int l=0; 
+        int ans=0; 
+        unordered_set<char> st;
+        for(int r=0; r<s.size(); r++){
+            while(st.count(s[r])){
+                st.erase(s[l]);
+                l++;
             }
-
-            last[s[right]] = right;
-            ans = max(ans, right - left + 1);
+            st.insert(s[r]);
+            ans = max(ans, r-l+1);
         }
-
         return ans;
     }
 };

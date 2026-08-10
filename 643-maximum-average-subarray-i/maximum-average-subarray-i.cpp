@@ -13,7 +13,7 @@ public:
             sum -= nums[i-k];
             ans = max(ans, sum);
         }
-        double avg = (double)ans/k;
-        return avg;
+        return (double)ans/k;
+        
     }
 };

@@ -16,7 +16,7 @@ public:
             dp[i][0]=true;
         }
         for(int i=1; i<=n; i++){
-            for(int sum=1; sum<=target; sum++){
+            for(int sum=0; sum<=target; sum++){
                 if(nums[i-1]<=sum){
                     dp[i][sum]= dp[i-1][sum] || dp[i-1][sum-nums[i-1]];
                 }

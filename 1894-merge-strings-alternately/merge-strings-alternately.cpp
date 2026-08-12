@@ -4,17 +4,17 @@ public:
         int i=0; 
         int j =0; 
         string result; 
-        while(word1[i]!='\0' && word2[j]!='\0'){
+        while(i<word1.size() && j<word2.size()){
             result.push_back(word1[i]);
             i++;
             result.push_back(word2[j]);
             j++;
         }
-        while(word1[i]!='\0'){
+        while(i<word1.size()){
             result.push_back(word1[i]);
             i++;
         }
-        while(word2[j]!='\0'){
+        while(j<word2.size()){
             result.push_back(word2[j]);
             j++;
         }

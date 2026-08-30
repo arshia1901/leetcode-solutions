@@ -1,30 +1,35 @@
 class Solution {
+private: 
+    bool f(int index, int target, vector<vector<int>> & dp, vector<int> &nums){
+        if(target==0){
+            return true; 
+        }
+        if(index==0){
+            return (nums[0]==target); 
+        }
+        if(dp[index][target]!=-1){
+            return dp[index][target]; 
+        }
+        bool notTake = f(index-1, target, dp, nums); 
+        bool take = false; 
+        if(nums[index]<=target){
+            take = f(index-1, target-nums[index], dp, nums); 
+        }
+        return dp[index][target]= take||notTake; 
+    }
 public:
     bool canPartition(vector<int>& nums) {
-        int n = nums.size();
-        int total=0; 
-        for(int x:nums){
-            total+=x;
+        int n = nums.size(); 
+        
+        int s = 0; 
+        for(int x : nums){
+            s+=x; 
         }
-        if(total%2!=0){
-            return false;
+        if(s%2!=0){
+            return false; 
         }
-        int target = total/2;
-        vector<vector<bool>> dp(n+1, vector<bool>(target+1, false));
-
-        for(int i=0; i<=n; i++){
-            dp[i][0]=true;
-        }
-        for(int i=1; i<=n; i++){
-            for(int sum=0; sum<=target; sum++){
-                if(nums[i-1]<=sum){
-                    dp[i][sum]= dp[i-1][sum] || dp[i-1][sum-nums[i-1]];
-                }
-                else{
-                    dp[i][sum]=dp[i-1][sum];
-                }
-            }
-        }
-        return dp[n][target];
+        int target = s/2; 
+        vector<vector<int>> dp(n, vector<int>(target+1, -1)); 
+        return f(n-1, target, dp, nums); 
     }
 };
